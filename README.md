@@ -1,96 +1,64 @@
-# Telegram Chatbot Powered by Gemini AI
+# Telegram AI Chatbot with Image Generation
 
 ## Overview
-This project is a **Telegram chatbot** powered by **Google's Gemini AI**, allowing users to interact with an intelligent assistant directly through Telegram. The bot can process text queries and respond with AI-generated answers.
+This is a Telegram chatbot powered by Google's Gemini AI for text and image generation. It uses the `python-telegram-bot` library to interact with Telegram users, and MongoDB to store user interactions.
 
 ## Features
-- **AI-powered responses**: Uses Gemini AI for intelligent query processing.
-- **Seamless Telegram integration**: Communicates with users via Telegram's bot API.
-- **User-friendly interaction**: Simple and intuitive command-based conversation.
-- **Scalable and efficient**: Built with Python and can be deployed on cloud platforms.
-- **MongoDB Integration**: Stores user interactions and chat history.
+- Handles text-based conversations using **Gemini-1.5-Flash**.
+- Generates AI-powered images using **Gemini-Pro-Vision**.
+- Stores user details and chat history in **MongoDB**.
+- Supports `/start` command for user onboarding.
+- `/image` command for AI-based image generation.
 
-## Technologies Used
-- **Python**
-- **Telegram Bot API**
-- **Google Gemini API**
-- **Python-Telegram-Bot Library**
-- **MongoDB (via PyMongo)**
+## Tech Stack
+- **Python**: Primary programming language.
+- **Telegram Bot API**: Handles message interactions.
+- **Google Gemini AI**:
+  - `gemini-1.5-flash`: For text generation.
+  - `gemini-pro-vision`: For image generation.
+- **MongoDB**: Stores user details and chat history.
+- **PyMongo**: Connects Python to MongoDB.
+- **python-telegram-bot**: Manages Telegram bot functionality.
 
-## Setup Instructions
+## Setup & Installation
+### Prerequisites
+- Python 3.8+
+- Telegram bot token
+- Google Gemini AI API key
+- MongoDB instance
 
-### 1. Clone the Repository
-```sh
- git clone https://github.com/yourusername/telegram-gemini-bot.git
- cd telegram-gemini-bot
-```
-
-### 2. Install Dependencies
-```sh
-pip install python-telegram-bot google-generative-ai python-dotenv pymongo
-```
-
-### 3. Get API Keys
-- **Telegram Bot API**: Register a bot using [BotFather](https://t.me/botfather) and obtain an API token.
-- **Gemini AI API**: Sign up at [Google AI](https://ai.google.dev) and get an API key.
-- **MongoDB**: Set up a free cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and get a connection URI.
-
-### 4. Configure Environment Variables
-Create a `.env` file and add the following:
-```env
-TELEGRAM_BOT_TOKEN='your-telegram-bot-token'
-GEMINI_API_KEY='your-gemini-api-key'
-MONGO_URI='your-mongodb-connection-uri'
-DB_NAME='your-database-name'
-```
-
-### 5. Update the Code for MongoDB Integration
-Modify `bot.py` to include MongoDB connection:
-```python
-from pymongo import MongoClient
-import os
-
-# Connect to MongoDB
-client = MongoClient(os.getenv("MONGO_URI"))
-db = client[os.getenv("DB_NAME")]
-users_collection = db["users"]
-chats_collection = db["chats"]
-
-# Function to save user info
-def save_user(user_id, username):
-    users_collection.update_one(
-        {"user_id": user_id},
-        {"$set": {"username": username}},
-        upsert=True
-    )
-
-# Function to store chat history
-def save_chat(user_id, message, response):
-    chats_collection.insert_one({
-        "user_id": user_id,
-        "message": message,
-        "response": response
-    })
-```
-
-### 6. Run the Bot
-```sh
-python bot.py
-```
+### Installation Steps
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/telegram-gemini-bot.git
+   cd telegram-gemini-bot
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Set up environment variables:
+   ```bash
+   export TOKEN="your-telegram-bot-token"
+   export API_KEY="your-google-api-key"
+   export MONGO_URI="your-mongodb-uri"
+   ```
+4. Run the bot:
+   ```bash
+   python bot.py
+   ```
 
 ## Usage
-1. Start the bot by running `/start` in Telegram.
-2. Type any query, and the bot will generate responses using Gemini AI.
-3. The bot stores user interactions and chat history in MongoDB.
-
-## Deployment
-For cloud deployment, use platforms like:
-- **Heroku**
-- **AWS Lambda**
-- **Google Cloud Functions**
-
-## Contributions
-Feel free to fork the repository, create issues, or submit pull requests!
+- Start the bot with `/start`.
+- Send any text message to get an AI-generated response.
+- Use `/image <prompt>` to generate an image.
 
 ## License
-This project is open-source and available under the MIT License.
+This project is licensed under the MIT License.
+
+## Contributing
+Feel free to submit issues or pull requests to improve this bot!
+
+## Contact
+For any queries, reach out to [your-email@example.com](mailto:your-email@example.com).
+
