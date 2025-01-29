@@ -60,5 +60,5 @@ This project is licensed under the MIT License.
 Feel free to submit issues or pull requests to improve this bot!
 
 ## Contact
-For any queries, reach out to [your-email@example.com](mailto:your-email@example.com).
+For any queries, reach out to [reachteju10@example.com](mailto:your-email@example.com).
 
