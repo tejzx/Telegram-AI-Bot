@@ -1,4 +1,4 @@
-# Telegram AI Chatbot with Image Generation
+# Telegram AI Chatbot - TeleAIBot
 
 ## Overview
 This is a Telegram chatbot powered by Google's Gemini AI for text and image generation. It uses the `python-telegram-bot` library to interact with Telegram users, and MongoDB to store user interactions.
